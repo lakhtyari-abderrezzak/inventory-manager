@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('sku')->unique();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('supplier_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('supplier_id')->nullable()->constrained('suppliers', 'id')->onDelete('set null');
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->check('price >= 0');
             $table->decimal('cost_price', 10, 2)->nullable();
