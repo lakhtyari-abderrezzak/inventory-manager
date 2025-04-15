@@ -75,6 +75,21 @@
             <label for="unit" class="block text-gray-700 font-medium">Unit</label>
             <input type="text" id="unit" wire:model="unit" class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300" placeholder="Enter unit of measurement">
             @error('unit') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            
+            <div  wire:loading wire:target="image_path" class="mt-2 text-gray-500">
+                <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                </svg>
+            </div>
+
+            @if($image_path)
+                <img src="{{ $image_path->temporaryUrl() }}" alt="Product Image" class="mt-2 w-32 h-32 object-cover rounded-lg">
+                <button type="button" wire:click="$set('image_path', null)" class="mt-2 text-red-500 hover:underline">Remove Image</button>
+            @endif
+        
+            
         </div>
 
         <!-- Image -->
@@ -92,7 +107,7 @@
 
         <!-- Submit Button -->
         <div class="flex justify-end">
-            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
+            <button type="submit" wire:loading.attr="disabled" class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">
                 Add Product
             </button>
         </div>
