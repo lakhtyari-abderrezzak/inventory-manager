@@ -19,7 +19,7 @@ class EditProduct extends Component
     public $productId;
 
     public $name, $sku, $category_id, $supplier_id, $description, $price, $cost_price,
-           $quantity, $low_stock_alert, $unit, $image_path, $barcode, $is_active;
+        $quantity, $low_stock_alert, $unit, $image_path, $uploadedImage, $barcode, $is_active;
 
     public function mount($productId)
     {
@@ -42,7 +42,7 @@ class EditProduct extends Component
         $this->is_active = (bool) $this->product->is_active;
     }
 
- 
+
 
     public function submit()
     {
@@ -57,27 +57,24 @@ class EditProduct extends Component
             'quantity' => 'required|integer',
             'low_stock_alert' => 'nullable|integer',
             'unit' => 'nullable|string',
-            'image_path' => 'nullable|image|max:2048', // image_path validation
+            'uploadedImage' => 'nullable|image|max:2048',
             'barcode' => 'nullable|string',
             'is_active' => 'boolean',
         ]);
-    
+
         try {
-            // Check if a new image is uploaded
-            if ($this->image_path) {
-                // If there's a new image, delete the old one from storage
-                if ($this->product->image_path) {
-                    // The product already has an image_path, so delete the old one
+            if ($this->uploadedImage) {
+                // Delete the old image if it exists
+                if ($this->product->image_path && Storage::disk('public')->exists($this->product->image_path)) {
                     Storage::disk('public')->delete($this->product->image_path);
                 }
-    
-                // Store the new image and get its path
-                $imagePath = $this->image_path->store('products', 'public');
+
+                // Store the new image
+                $imagePath = $this->uploadedImage->store('products', 'public');
             } else {
-                // No new image, keep the existing one
-                $imagePath = $this->product->image_path;
+                $imagePath = $this->product->image_path; // Keep the existing one
             }
-    
+
             // Update the product with the new data
             $this->product->update([
                 'name' => $this->name,
@@ -94,18 +91,22 @@ class EditProduct extends Component
                 'barcode' => $this->barcode,
                 'is_active' => $this->is_active,
             ]);
-    
+
             // Success message
             session()->flash('message', 'Product updated successfully.');
-            
+
+            $this->reset(); // Reset the form fields if needed 
+
+            return redirect()->route('products.index'); // Redirect to the products index page
+
         } catch (\Exception $e) {
             // Handle the error if the image upload fails
             session()->flash('error', 'Error uploading image: ' . $e->getMessage());
             return;
         }
     }
-    
-    
+
+
 
     public function render()
     {
