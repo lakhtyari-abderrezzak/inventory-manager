@@ -85,10 +85,14 @@
 
         <!-- Image -->
         <div class="mb-4">
-            <label for="image_path" class="block text-gray-700 font-medium">Product Image</label>
-            <input type="file" id="image_path" wire:model="image_path" class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300">
-            @error('image_path') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+            <label for="uploadedImage" class="block text-gray-700 font-medium">Product Image</label>
+            <input type="file" id="uploadedImage" wire:model="uploadedImage" class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300">
+            @error('uploadedImage') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
+        @if ($product->image_path)
+    <img src="{{ Storage::url($product->image_path) }}" alt="Product Image" style="max-height: 150px;">
+@endif
+
 
         <!-- Barcode -->
         <div class="mb-4">
