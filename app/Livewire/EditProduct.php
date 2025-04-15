@@ -106,6 +106,11 @@ class EditProduct extends Component
         }
     }
 
+    public function removeImage()
+{
+    $this->reset('uploadedImage');
+}
+
 
 
     public function render()
