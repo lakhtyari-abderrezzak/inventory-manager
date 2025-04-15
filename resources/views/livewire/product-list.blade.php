@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @forelse($products as $product)
             <div class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
-                <img src="{{ $product->image_path ?? 'https://via.placeholder.com/300x200.png?text=Product+Image' }}"
+                <img src="{{ asset( 'storage/' . $product->image_path ) ?? 'https://via.placeholder.com/300x200.png?text=Product+Image' }}"
                     class="rounded-lg w-full h-40 object-cover mb-4" alt="Product Image">
 
                 <h2 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h2>
@@ -19,8 +19,8 @@
 
                 <div class="mt-4 flex justify-between">
                     <a href="#" class="text-blue-600 text-sm hover:underline">View</a>
-                    <a href="#" class="text-yellow-500 text-sm hover:underline">Edit</a>
-                    <a href="#" class="text-red-500 text-sm hover:underline">Delete</a>
+                    <a href="{{ route('products.edit', $product)}}" class="text-yellow-500 text-sm hover:underline">Edit</a>
+                    <a wire:click="delete({{$product->id}})" class="text-red-500 text-sm hover:underline">Delete</a>
                 </div>
             </div>
         @empty
