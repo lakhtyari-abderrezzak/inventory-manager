@@ -23,12 +23,12 @@
 
             <!-- Action Buttons -->
             <div class="flex gap-2 mt-6">
-                <a href="{{ route('categories.edit', $category->id) }}"
+                <a wire:navigte href="{{ route('categories.edit', $category->id) }}"
                     class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
                     Edit Category
                 </a>
 
-                {{-- <livewire:delete-category :category="$category->id" /> --}}
+                <livewire:delete-category :category="$category->id" />
             </div>
 
         </div>
@@ -48,7 +48,10 @@
                     <!-- Product Info -->
                     <div class="p-4">
                         <h4 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->name }}</h4>
-                        <p class="text-gray-600 text-sm">{{ $product->description ?? 'No description available.' }}</p>
+                        {{-- Show description  --}}
+                        @if($product->description)
+                            <p class="text-gray-600 mb-2">{{ $product->description }}</p>
+                        @endif
                     </div>
                 </a>
             </div>
