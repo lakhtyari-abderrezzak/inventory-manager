@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -10,6 +11,11 @@ class CategoryController extends Controller
     {
         return view('dashboard.categories.index');
     }
+    public function show(Category $category)
+    {
+        return view('dashboard.categories.show', compact('category'));
+    }
+  
 
     public function create()
     {
