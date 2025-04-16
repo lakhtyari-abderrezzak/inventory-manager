@@ -18,9 +18,9 @@
                         class="font-semibold">${{ number_format($product->price, 2) }}</span></p>
 
                 <div class="mt-4 flex justify-between">
-                    <a href="#" class="text-blue-600 text-sm hover:underline">View</a>
-                    <a href="{{ route('products.edit', $product)}}" class="text-yellow-500 text-sm hover:underline">Edit</a>
-                    <a wire:click="delete({{$product->id}})" class="text-red-500 text-sm hover:underline">Delete</a>
+                    <a wire:navigate href="{{ route('products.show', $product)}}" class="text-blue-600 text-sm hover:underline">View</a>
+                    <a wire:navigate href="{{ route('products.edit', $product)}}" class="text-yellow-500 text-sm hover:underline">Edit</a>
+                    <a wire:navigate wire:click="delete({{$product->id}})" class="text-red-500 text-sm hover:underline">Delete</a>
                 </div>
             </div>
         @empty
