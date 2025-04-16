@@ -14,9 +14,11 @@ class ProductController extends Controller
         return view('dashboard.products.index');
     }
 
-    public function show(Product $product)
+    public function show($product)
     {
-        return view('dashboard.products.create' , compact('product'));
+        $product = Product::with(['category', 'supplier'])->findOrFail($product);
+        $productId = $product->id;
+        return view('dashboard.products.show' , compact('product', 'productId'));
     }
     public function create()
     {
@@ -29,4 +31,5 @@ class ProductController extends Controller
             'productId' => $product->id
         ]);
     }
+    
 }
