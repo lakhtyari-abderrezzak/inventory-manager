@@ -1,6 +1,6 @@
 <div>
     <input type="text" wire:model.debounce.300ms="search" placeholder="Search categories..."
-        class="px-4 py-2 border rounded-lg shadow-sm focus:ring focus:border-blue-300" />
+        class="px-4 py-2 border rounded-lg shadow-sm focus:ring focus:border-blue-300 w-full my-4 " />
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @forelse ($categories as $category)
             <div class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
