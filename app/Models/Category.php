@@ -12,16 +12,8 @@ class Category extends Model
     protected $fillable = [
         'name',
         'description',
-        'is_active',
     ];
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'is_active' => 'boolean',
-    ];
+   
     
     public function products()
     {
