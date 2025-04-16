@@ -28,7 +28,7 @@
                     Edit Category
                 </a>
 
-                <livewire:delete-category :category="$category->id" />
+                {{-- <livewire:delete-category :category="$category->id" />  --}}
             </div>
 
         </div>
