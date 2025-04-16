@@ -15,7 +15,7 @@
 
             <!-- Product Details -->
             <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Smartphone XYZ</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">{{ $product->name }}</h2>
 
                 <div class="space-y-3 text-gray-700">
                     <p><span class="font-semibold">SKU:</span> {{ $product->sku }}</p>
