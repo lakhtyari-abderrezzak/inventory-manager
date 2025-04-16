@@ -5,7 +5,7 @@
         @forelse ($categories as $category)
             <div class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
                 <div
-                    class="w-full h-32 {{ $bg[mt_rand(0, 10)] }} rounded-lg flex items-center justify-center text-white text-xl font-semibold mb-4">
+                    class="w-full h-32 {{ $bg[mt_rand(0, 9)] }} rounded-lg flex items-center justify-center text-white text-xl font-semibold mb-4">
                     {{ strtoupper(substr($category->name, 0, 1)) }}
                 </div>
 
@@ -15,7 +15,7 @@
                 <div class="mt-4 flex justify-between text-sm">
                     <a wire:navigate href="{{ route('categories.show', $category->id)}}" class="text-blue-600 hover:underline">View</a>
                     <a wire:navigate href="{{ route('categories.edit', $category->id)}}" class="text-yellow-500 hover:underline">Edit</a>
-                    <a wire:navigate wire:click="delete({{$category->id}})" class="text-red-500 text-sm hover:underline">Delete</a>>
+                    <a wire:navigate wire:click="delete({{$category->id}})" class="text-red-500 text-sm hover:underline">Delete</a>
                 </div>
             </div>
         @empty
