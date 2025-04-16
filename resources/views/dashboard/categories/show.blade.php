@@ -1,51 +1,63 @@
 <x-layouts.app>
-    <div class="max-w-5xl mx-auto px-4 py-8">
-        <div class="bg-white shadow-xl rounded-2xl p-6 grid md:grid-cols-2 gap-6">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-white shadow-xl rounded-2xl p-6 space-y-6">
 
-            <!-- Product Image -->
-            <div class="flex items-center justify-center">
-                @if ($product->image_path)
+            <!-- Category Name -->
+            <div class="border-b pb-4">
+                <h2 class="text-3xl font-bold text-gray-800">{{ $category->name }}</h2>
+                <p class="text-gray-500 mt-1">
+                    {{ $category->description ?? 'No description provided.' }}
+                </p>
+            </div>
+
+            <!-- Category Details -->
+            <div class="space-y-3 text-gray-700">
+                <p>
+                    <span class="font-semibold">Status:</span>
+                    <span class="inline-block px-2 py-1 rounded-full text-sm font-medium
+                        {{ $category->is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                        {{ $category->is_active ? 'Active' : 'Inactive' }}
+                    </span>
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-2 mt-6">
+                <a href="{{ route('categories.edit', $category->id) }}"
+                    class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                    Edit Category
+                </a>
+
+                {{-- <livewire:delete-category :category="$category->id" /> --}}
+            </div>
+
+        </div>
+
+       <!-- Related Products Card Section -->
+<div class="mt-10 bg-white rounded-2xl shadow p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Related Products</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        @forelse ($category->products as $product)
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <a href="{{ route('products.show', $product->id) }}" class="block">
+                    <!-- Product Image -->
                     <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}"
-                        class="rounded-xl w-full h-auto object-cover">
-                @else
-                    <img src="storage/default.jpg" alt="{{ $product->name }}"
-                        class="rounded-xl w-full h-auto object-cover">
-                @endif
+                        class="w-full h-48 object-cover">
+                    
+                    <!-- Product Info -->
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">{{ $product->name }}</h4>
+                        <p class="text-gray-600 text-sm">{{ $product->description ?? 'No description available.' }}</p>
+                    </div>
+                </a>
             </div>
-
-            <!-- Product Details -->
-            <div>
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Smartphone XYZ</h2>
-
-                <div class="space-y-3 text-gray-700">
-                    <p><span class="font-semibold">SKU:</span> {{ $product->sku }}</p>
-                    <p><span class="font-semibold">Price:</span> {{ $product->proce }}</p>
-                    <p><span class="font-semibold">Stock:</span> {{ $product->unit }}</p>
-                    <p><span class="font-semibold">Category:</span> {{ $product->category->name }}</p>
-                    <p><span class="font-semibold">Supplier:</span> {{ $product->supplier->supplier_name }}</p>
-                </div>
-
-                <div class="flex justify-content space-between gap-2 mt-6">
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
-                        <a wire:navigate href="{{ route('products.edit', $product->id) }}"> Edit Product</a>
-                    </button>
-                    <livewire:delete-product :product="$product->id" />
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Product Description -->
-        <div class="mt-10 bg-white rounded-2xl shadow p-6">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Description</h3>
-            <p class="text-gray-700 leading-relaxed">
-                The Smartphone XYZ is a high-performance device with a sleek design, powerful processor, and
-                long-lasting battery. Perfect for everyday use and professional tasks.
-            </p>
-        </div>
+        @empty
+            <p>No products found in this category.</p>
+        @endforelse
     </div>
+</div>
 
-
-
+       
+    </div>
 </x-layouts.app>
-
