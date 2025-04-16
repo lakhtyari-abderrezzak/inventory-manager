@@ -17,13 +17,13 @@ class CategoryList extends Component
         'bg-yellow-200',
         'bg-green-200',
         'bg-blue-200',
-        'bg-gray-200',
+        'bg-grey-200',
         'bg-orange-200',
-        'bg-brown-200',
-        'bg-black',
+        'bg-teal-200',
         'bg-gold-200',
         'bg-silver-200',
         'bg-purple-200',
+        'bg-pink-200',
     ];
 
     public function delete($id){
@@ -31,7 +31,7 @@ class CategoryList extends Component
 
         $category->delete();
 
-        session()->flash('success', 'Category deleted succeffully!');
+        session()->flash('message', 'Category deleted succeffully!');
 
     }
 
