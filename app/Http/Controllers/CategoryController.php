@@ -22,8 +22,10 @@ class CategoryController extends Controller
         return view('dashboard.categories.create');
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        return view('dashboard.categories.edit', compact('id'));
+        $categoryId = $category->id;
+        return view('dashboard.categories.edit', compact('category', 'categoryId'));
     }
+  
 }
