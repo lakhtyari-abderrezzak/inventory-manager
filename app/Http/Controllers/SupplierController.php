@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -21,8 +22,9 @@ class SupplierController extends Controller
         return view('dashboard.suppliers.create');
     }
 
-    public function edit($supplier)
+    public function edit(Supplier $supplier)
     {
-        return view('dashboard.suppliers.edit', compact('supplier'));
+        $supplierId = $supplier->id;
+        return view('dashboard.suppliers.edit', compact('supplier', 'supplierId'));
     }
 }
