@@ -55,9 +55,11 @@ class EditSupplier extends Component
             'is_active' => $this->is_active,
         ]);
 
-        session()->flash('message', 'Supplier updated successfully.');
+        $this->dispatch('flash', type: 'success', message: 'Supplier updated!');
 
-        return redirect()->route('suppliers.index'); 
+        $this->dispatch('redirect', url: route('suppliers.show', ['supplier' => $this->supplier->id]));
+
+
     }
     public function render()
     {
