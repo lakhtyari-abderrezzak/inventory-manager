@@ -17,7 +17,7 @@ class UnitFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'unit_name' => $this->faker->word(),
         ];
     }
 }
