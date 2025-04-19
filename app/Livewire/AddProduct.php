@@ -64,7 +64,7 @@ class AddProduct extends Component
                 $validatedData['image_path'] = $this->image_path->store('products', 'public');
             }
         } catch (\Exception $e) {
-            session()->flash('error', 'Error uploading image: ' . $e->getMessage());
+            $this->dispatch('flash', type: 'error', message: 'Something went wrong');
             return;
         }
 
@@ -87,9 +87,9 @@ class AddProduct extends Component
             'is_active',
         ]);
 
-        session()->flash('message', 'Product added successfully!');
+        $this->dispatch('flash', type: 'success', message: 'Product created!');
+        $this->dispatch('redirect', url: route('products.index'));
 
-        return redirect()->route('products.index');
     }
 
     public function render()
