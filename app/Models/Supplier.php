@@ -20,4 +20,11 @@ class Supplier extends Model
         'country',
         'is_active',
     ];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
