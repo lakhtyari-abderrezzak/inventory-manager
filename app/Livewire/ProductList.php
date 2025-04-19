@@ -14,7 +14,7 @@ class ProductList extends Component
 
         $product->delete();
 
-        session()->flash('message', 'Product deleted successfully!');
+        $this->dispatch('flash', type: 'success', message: 'Product deleted!');
     }
     
     public function render()
