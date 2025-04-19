@@ -27,7 +27,7 @@
 
             <!-- Actions -->
             <div class="flex gap-3 mt-6">
-                <a href="{{ route('suppliers.edit', $supplier->id) }}"
+                <a wire:navigate href="{{ route('suppliers.edit', $supplier->id) }}"
                    class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition">
                     Edit Supplier
                 </a>
