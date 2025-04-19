@@ -33,8 +33,12 @@ class EditCategory extends Component
             'description' => $this->description,
         ]);
 
-        session()->flash('message', 'Category updated successfully.');
-        return redirect()->route('categories.index');
+        $this->dispatch('flash', type: 'success', message: 'Category updated!');
+
+
+        $this->dispatch('redirect', 
+            url : route('categories.index', ['category' => $this->category->id])
+        );
     }
     public function render()
     {
