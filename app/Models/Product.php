@@ -16,12 +16,12 @@ class Product extends Model
         'sku',
         'category_id',
         'supplier_id',
+        'unit_id',
         'description',
         'price',
         'cost_price',
         'quantity',
         'low_stock_alert',
-        'unit',
         'image_path',
         'barcode',
         'is_active',
@@ -34,7 +34,7 @@ class Product extends Model
         return $this->belongsto(Supplier::class);
     }
     public function unit(){
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Unit::class, 'unit_id', 'id');
     }
     public function getImageUrlAttribute()
     {
