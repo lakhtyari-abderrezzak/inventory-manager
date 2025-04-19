@@ -33,4 +33,11 @@ class Product extends Model
     public function supplier(){
         return $this->belongsto(Supplier::class);
     }
+    public function unit(){
+        return $this->belongsTo(Unit::class);
+    }
+    public function getImageUrlAttribute()
+    {
+        return $this->image_path ? asset('storage/' . $this->image_path) : null;
+    }
 }
