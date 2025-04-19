@@ -26,12 +26,17 @@ class AddCategory extends Component
             'is_active' => $this->is_active,
         ]);
 
-        session()->flash('message', 'Category added successfully!');
-
+        
         // Reset the form fields
         $this->reset();
+        
+        $this->dispatch('flash', type: 'success', message: 'Category created!');
 
-        return redirect()->route('categories.index');
+
+        $this->dispatch('redirect', 
+            url : route('categories.index')
+        );
+
     }
 
     public function render()
