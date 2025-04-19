@@ -12,8 +12,9 @@ class SupplierController extends Controller
         return view('dashboard.suppliers.index');
     }
 
-    public function show($supplier)
+    public function show(Supplier $supplier)
     {
+        $supplier = Supplier::with('products')->findOrFail($supplier->id);
         return view('dashboard.suppliers.show', compact('supplier'));
     }
 
