@@ -20,8 +20,11 @@ class ProductList extends Component
     public function render()
     {
         $products = Product::query()
-            ->where('name', 'like', '%' . $this->search . '%')
-            ->orWhere('sku', 'like', '%' . $this->search . '%')
+            ->with(['unit', 'category']) // Ensure the 'unit' relationship is loaded
+            ->where(function ($query) {
+            $query->where('name', 'like', '%' . $this->search . '%')
+                  ->orWhere('sku', 'like', '%' . $this->search . '%');
+            })
             ->latest()
             ->paginate(15);
 
