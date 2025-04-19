@@ -20,7 +20,7 @@
                 <div class="space-y-3 text-gray-700">
                     <p><span class="font-semibold">SKU:</span> {{ $product->sku }}</p>
                     <p><span class="font-semibold">Price:</span> {{ $product->proce }}</p>
-                    <p><span class="font-semibold">Stock:</span> {{ $product->unit }}</p>
+                    <p><span class="font-semibold">Stock:</span> {{$product->quantity . ' ' . $product->unit }}</p>
                     <p><span class="font-semibold">Category:</span> {{ $product->category->name }}</p>
                     <p><span class="font-semibold">Supplier:</span> {{ $product->supplier->supplier_name }}</p>
                 </div>
