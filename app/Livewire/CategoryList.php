@@ -31,7 +31,8 @@ class CategoryList extends Component
 
         $category->delete();
 
-        session()->flash('message', 'Category deleted succeffully!');
+        $this->dispatch('flash', type: 'success', message: 'Category deleted!');
+
 
     }
 
