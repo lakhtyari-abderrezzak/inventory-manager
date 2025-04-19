@@ -18,7 +18,7 @@ class SupplierList extends Component
 
         $supplier->delete();
 
-        session()->flash('message', 'Supplier deleted successfully!');
+        $this->dispatch('flash', type: 'success', message: 'Supplier deleted!');
     }
 
     public function render()
