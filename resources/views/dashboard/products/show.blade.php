@@ -19,8 +19,8 @@
 
                 <div class="space-y-3 text-gray-700">
                     <p><span class="font-semibold">SKU:</span> {{ $product->sku }}</p>
-                    <p><span class="font-semibold">Price:</span> {{ $product->proce }}</p>
-                    <p><span class="font-semibold">Stock:</span> {{$product->quantity . ' ' . $product->unit }}</p>
+                    <p><span class="font-semibold">Price:</span> {{ $product->price }}$</p>
+                    <p><span class="font-semibold">Stock:</span> {{$product->quantity}} {{ $product->unit }}</p>
                     <p><span class="font-semibold">Category:</span> {{ $product->category->name }}</p>
                     <p><span class="font-semibold">Supplier:</span> {{ $product->supplier->supplier_name }}</p>
                 </div>
@@ -35,14 +35,12 @@
 
         </div>
 
-        <!-- Product Description -->
-        <div class="mt-10 bg-white rounded-2xl shadow p-6">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Description</h3>
-            <p class="text-gray-700 leading-relaxed">
-                The Smartphone XYZ is a high-performance device with a sleek design, powerful processor, and
-                long-lasting battery. Perfect for everyday use and professional tasks.
-            </p>
-        </div>
+        @if ($product->description)
+            <div class="mt-6 bg-white shadow-xl rounded-2xl p-6">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Product Description</h3>
+                <p class="text-gray-700">{{ $product->description }}</p>
+            </div>
+        @endif
     </div>
 
 </x-layouts.app>
