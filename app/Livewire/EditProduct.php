@@ -92,16 +92,19 @@ class EditProduct extends Component
                 'is_active' => $this->is_active,
             ]);
 
-            // Success message
-            session()->flash('message', 'Product updated successfully.');
+            $this->reset(); // Reset the form fields
+            
+            $this->dispatch('flash', type: 'success', message: 'Product updated!');
 
-            $this->reset(); // Reset the form fields if needed 
 
-            return redirect()->route('products.index'); // Redirect to the products index page
+            $this->dispatch('redirect', 
+                url : route('products.index', ['product' => $this->product->id])
+            );
 
         } catch (\Exception $e) {
             // Handle the error if the image upload fails
-            session()->flash('error', 'Error uploading image: ' . $e->getMessage());
+            $this->dispatch('flash', type: 'error', message:  'Error uploading image: ' . $e->getMessage());
+
             return;
         }
     }
