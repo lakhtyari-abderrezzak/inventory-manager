@@ -13,7 +13,7 @@
                 <h2 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h2>
                 <p class="text-sm text-gray-500">SKU: {{ $product->sku }}</p>
                 <p class="text-sm text-gray-600 mt-2">Stock: <span class="font-semibold">{{ $product->quantity }}
-                        units</span></p>
+                        {{$product->unit->unit_name}}</span></p>
                 <p class="text-sm text-gray-600">Price: <span
                         class="font-semibold">${{ number_format($product->price, 2) }}</span></p>
 
