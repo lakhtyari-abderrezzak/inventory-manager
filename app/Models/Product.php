@@ -34,7 +34,7 @@ class Product extends Model
         return $this->belongsto(Supplier::class);
     }
     public function unit(){
-        return $this->belongsTo(Unit::class, 'unit_id', 'id');
+        return $this->belongsTo(Unit::class);
     }
     public function getImageUrlAttribute()
     {
