@@ -1,7 +1,4 @@
 <div>
-
-    <x-success-message />
-
     <!-- Add Supplier Form -->
     <form wire:submit.prevent="submit">
         <!-- Supplier Name -->
