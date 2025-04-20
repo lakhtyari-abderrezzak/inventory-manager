@@ -6,7 +6,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @forelse($suppliers as $supplier)
-            <div class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
+            <div wire:key="supplier-{{$supplier->id}}" class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
                 <h2 class="text-lg font-semibold text-gray-800 mb-1">{{ $supplier->supplier_name }}</h2>
                 <p class="text-sm text-gray-500">Contact: {{ $supplier->primary_contact_name }}</p>
                 <p class="text-sm text-gray-600 mt-1">Email: <span class="font-medium">{{ $supplier->email }}</span></p>
