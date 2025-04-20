@@ -6,7 +6,7 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @forelse($products as $product)
-            <div class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
+            <div wire:key="product-{{$product->id}}" class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
                 <img src="{{ asset( 'storage/' . $product->image_path ) ?? 'https://via.placeholder.com/300x200.png?text=Product+Image' }}"
                     class="rounded-lg w-full h-40 object-cover mb-4" alt="Product Image">
 
