@@ -22,7 +22,6 @@ return new class extends Migration {
             $table->decimal('cost_price', 10, 2)->nullable();
             $table->integer('quantity')->default(0)->check('quantity >= 0');
             $table->integer('low_stock_alert')->nullable()->check('low_stock_alert >= 0');
-            $table->string('unit')->default('pcs');
             $table->string('image_path', 255)->nullable();
             $table->string('barcode')->nullable()->unique();
             $table->boolean('is_active')->default(true);
