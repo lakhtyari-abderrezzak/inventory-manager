@@ -5,7 +5,7 @@
         <!-- Product Name -->
         <div class="mb-4">
             <label for="name" class="block text-gray-700 font-medium">Product Name</label>
-            <input type="text" id="name" wire:model="name" value="{{ $product->name }}"
+            <input type="text" id="name" wire:model="name" 
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Enter product name" required>
             @error('name')
@@ -16,7 +16,7 @@
         <!-- SKU -->
         <div class="mb-4">
             <label for="sku" class="block text-gray-700 font-medium">SKU</label>
-            <input type="text" id="sku" wire:model="sku" value="{{ $product->sku }}"
+            <input type="text" id="sku" wire:model="sku" 
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Enter product SKU" required>
             @error('sku')
@@ -28,16 +28,17 @@
         <div class="mb-4">
             <label for="category_id" class="block text-gray-700 font-medium">Category</label>
             <select id="category_id" wire:model="category_id"
-                class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-                required>
-                <option value="">Select Category</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ $product->category_id === $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}</option>
-                @endforeach
+            class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+            required>
+            <option value="">Select Category</option>
+            @foreach ($this->categories as $category)
+                <option value="{{ $category->id }}">
+                {{ $category->name }}
+                </option>
+            @endforeach
             </select>
             @error('category_id')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
+            <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
 
@@ -45,16 +46,17 @@
         <div class="mb-4">
             <label for="supplier_id" class="block text-gray-700 font-medium">Supplier</label>
             <select id="supplier_id" wire:model="supplier_id"
-                class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-                required>
-                <option value="">Select Supplier</option>
-                @foreach ($suppliers as $supplier)
-                    <option value="{{ $supplier->id }}" {{ $product->supplier_id === $supplier->id ? 'selected' : '' }}>
-                        {{ $supplier->supplier_name }}</option>
-                @endforeach
+            class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+            required>
+            <option value="">Select Supplier</option>
+            @foreach ($this->suppliers as $supplier)
+                <option value="{{ $supplier->id }}">
+                {{ $supplier->supplier_name }}
+                </option>
+            @endforeach
             </select>
             @error('supplier_id')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
+            <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
         </div>
 
@@ -115,13 +117,14 @@
 
         <!-- Unit -->
         <div class="mb-4">
-            <label for="unit" class="block text-gray-700 font-medium">Unit</label>
-            <input type="text" id="unit" wire:model="unit"
-                class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
-                placeholder="Enter unit of measurement">
-            @error('unit')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
-            @enderror
+            <label for="unit_id" class="block text-gray-700 font-medium">Unit</label>
+            <select wire:model="unit_id" id="unit" class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300" placeholder="Enter unit of measurement">
+                <option value="">Select Unit</option>
+                @foreach($units as $unit)
+                    <option value="{{ $unit->id }}">{{ $unit->unit_name }}</option>
+                @endforeach
+            </select>
+            @error('unit_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <!-- Image -->
