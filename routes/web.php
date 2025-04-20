@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CustomerController;       
 use App\Livewire\TestLivewire;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -23,6 +24,9 @@ Route::resource('categories', CategoryController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('suppliers', SupplierController::class)
+    ->middleware(['auth', 'verified']);
+
+Route::resource('customers', CustomerController::class)
     ->middleware(['auth', 'verified']);
     
 Route::middleware(['auth'])->group(function () {
