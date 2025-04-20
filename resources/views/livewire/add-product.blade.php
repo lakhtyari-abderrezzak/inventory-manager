@@ -60,7 +60,7 @@
         <!-- Price -->
         <div class="mb-4">
             <label for="price" class="block text-gray-700 font-medium">Price</label>
-            <input type="number" id="price" wire:model="price" step="0.01"
+            <input type="number" id="price" wire:model="price" 
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Enter product price" required>
             @error('price')
@@ -71,7 +71,7 @@
         <!-- Cost Price -->
         <div class="mb-4">
             <label for="cost_price" class="block text-gray-700 font-medium">Cost Price</label>
-            <input type="number" id="cost_price" wire:model="cost_price" step="0.01"
+            <input type="number" id="cost_price" wire:model="cost_price" 
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Enter cost price" required>
             @error('cost_price')
