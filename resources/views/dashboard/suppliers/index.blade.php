@@ -5,8 +5,7 @@
     <a wire:navigate href="/suppliers/create" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">+ Add a supplier</a>
   </div>
 
-  {{-- Success Message if the product is added successfuly --}}
-  <x-success-message />
+
 
   <livewire:supplier-list />
 
