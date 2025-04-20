@@ -30,7 +30,6 @@ class EditProduct extends Component
         $this->categories = Category::all();
         $this->suppliers = Supplier::all(); 
         $this->units = Unit::all(); 
-
         $this->name = $this->product->name;
         $this->sku = $this->product->sku;
         $this->category_id = $this->product->category_id;
@@ -75,7 +74,7 @@ class EditProduct extends Component
                 // Store the new image
                 $imagePath = $this->uploadedImage->store('products', 'public');
             } else {
-                $imagePath = $this->product->image_path; // Keep the existing one
+                $imagePath = $this->product->image_path; // Keep the old image path if no new image is uploaded
             }
 
             // Update the product with the new data
