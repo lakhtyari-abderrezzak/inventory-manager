@@ -44,6 +44,13 @@
                     wire:navigate>
                     {{ __('Suppliers') }}
                 </flux:navlist.item>
+                <flux:navlist.item 
+                    icon="truck" 
+                    :href="route('customers.index')" 
+                    :current="request()->routeIs('customers.*')" 
+                    wire:navigate>
+                    {{ __('Customers') }}
+                </flux:navlist.item>
                 
                 </flux:navlist.group>
             </flux:navlist>
