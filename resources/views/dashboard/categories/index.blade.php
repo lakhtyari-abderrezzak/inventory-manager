@@ -6,8 +6,7 @@
             <a wire:navigate href="/categories/create" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">+ Add
                 Category</a>
         </div>
-        {{-- Success message --}}
-        <x-success-message />
+
         {{-- category list from livewire component --}}
         <livewire:category-list />
 
