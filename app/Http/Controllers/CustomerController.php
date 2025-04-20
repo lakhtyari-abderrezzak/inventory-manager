@@ -24,7 +24,9 @@ class CustomerController extends Controller
     
     public function edit(Customer $customer)
     {
-        return view('dashboard.customers.edit', compact('customer'));
+        return view('dashboard.customers.edit', [
+            'customerId' => $customer->id,
+        ]);
     }
    
 }
