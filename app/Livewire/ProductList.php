@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class ProductList extends Component
@@ -11,6 +12,10 @@ class ProductList extends Component
 
     public function delete($id){
         $product = Product::findOrFail($id);
+
+        if ($product->image_path && Storage::disk('public')->exists($product->image_path)) {
+            Storage::disk('public')->delete($product->image_path);
+        }
 
         $product->delete();
 
