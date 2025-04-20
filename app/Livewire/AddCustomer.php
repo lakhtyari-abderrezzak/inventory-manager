@@ -15,9 +15,9 @@ class AddCustomer extends Component
     public $country;
     
     protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'phone' => 'required|string|max:15',
+        'name' => 'required|string|max:255|unique:customers,name',
+        'email' => 'required|email|max:255|unique:customers,email',
+        'phone' => 'required|string|max:15|unique:customers,phone',
         'address' => 'required|string|max:255',
         'city' => 'required|string|max:100',
         'country' => 'required|string|max:100',
