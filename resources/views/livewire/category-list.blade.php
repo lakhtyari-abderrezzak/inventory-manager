@@ -3,7 +3,7 @@
         class="px-4 py-2 border rounded-lg shadow-sm focus:ring focus:border-blue-300 w-full my-4 " />
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @forelse ($categories as $category)
-            <div class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
+            <div wire:key="category-{{$category->id}}" class="bg-white shadow rounded-2xl p-4 hover:shadow-md transition">
                 <div
                     class="w-full h-32 {{ $bg[mt_rand(0, 9)] }} rounded-lg flex items-center justify-center text-white text-xl font-semibold mb-4">
                     {{ strtoupper(substr($category->name, 0, 1)) }}
