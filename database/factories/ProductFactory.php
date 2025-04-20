@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'sku' => strtoupper(Str::random(10)), // Random unique SKU 
             'category_id' => Category::inRandomOrder()->value('id'),
             'supplier_id' => Supplier::inRandomOrder()->value('id'),
-            'unit_id' => Unit::inRandomOrder()->value('id'), // Assuming you have a Unit model
+            'unit_id' => Unit::inRandomOrder()->value('id') ?? Unit::factory()->create()->id, // Ensure a valid unit_id
             'description' => $this->faker->sentence(),
             'price' => $this->faker->randomFloat(2, 1, 1000), // Random price between 1 and 1000
             'cost_price' => $this->faker->randomFloat(2, 1, 500), // Random cost price between 1 and 500
