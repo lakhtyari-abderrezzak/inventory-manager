@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
+use App\Models\Unit;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
@@ -13,7 +14,7 @@ class AddProduct extends Component
     use WithFileUploads;
 
     public $name, $sku, $category_id, $supplier_id, $description, $price, $cost_price, $quantity,
-        $low_stock_alert, $unit, $image_path, $barcode, $is_active = true;
+        $low_stock_alert, $unit_id, $image_path, $barcode, $is_active = true;
 
   
 
@@ -41,12 +42,12 @@ class AddProduct extends Component
             'sku' => 'nullable|string|max:100|unique:products,sku,' . $sku, 
             'category_id' => 'required|exists:categories,id',
             'supplier_id' => 'required|exists:suppliers,id',
+            'unit_id' => 'required|exists:units,id',
             'description' => 'nullable|string|max:1000',
             'price' => 'required|numeric|min:0',
             'cost_price' => 'required|numeric|min:0',
             'quantity' => 'required|integer|min:0',
             'low_stock_alert' => 'nullable|integer|min:0',
-            'unit' => 'nullable|string|max:50',
             'image_path' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048',
             'barcode' => 'nullable|string|max:255',
             'is_active' => 'required|boolean',
@@ -81,7 +82,7 @@ class AddProduct extends Component
             'cost_price',
             'quantity',
             'low_stock_alert',
-            'unit',
+            'unit_id',
             'image_path',
             'barcode',
             'is_active',
@@ -96,7 +97,8 @@ class AddProduct extends Component
     {
         $categories = Category::all();
         $suppliers = Supplier::all();
+        $units = Unit::all(); 
 
-        return view('livewire.add-product', compact('categories', 'suppliers'));
+        return view('livewire.add-product', compact('categories', 'suppliers', 'units'));
     }
 }
