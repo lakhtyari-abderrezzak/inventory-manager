@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Supplier;
+use App\Models\Unit;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
@@ -16,17 +17,19 @@ class EditProduct extends Component
     public Product $product;
     public $categories;
     public $suppliers;
+    public $units;
     public $productId;
 
     public $name, $sku, $category_id, $supplier_id, $description, $price, $cost_price,
-        $quantity, $low_stock_alert, $unit, $image_path, $uploadedImage, $barcode, $is_active;
+        $quantity, $low_stock_alert, $unit_id, $image_path, $uploadedImage, $barcode, $is_active;
 
     public function mount($productId)
     {
         $this->productId = $productId;
         $this->product = Product::findOrFail($this->productId);
         $this->categories = Category::all();
-        $this->suppliers = Supplier::all();
+        $this->suppliers = Supplier::all(); 
+        $this->units = Unit::all(); 
 
         $this->name = $this->product->name;
         $this->sku = $this->product->sku;
@@ -37,7 +40,7 @@ class EditProduct extends Component
         $this->cost_price = $this->product->cost_price;
         $this->quantity = $this->product->quantity;
         $this->low_stock_alert = $this->product->low_stock_alert;
-        $this->unit = $this->product->unit;
+        $this->unit_id = $this->product->unit_id;
         $this->barcode = $this->product->barcode;
         $this->is_active = (bool) $this->product->is_active;
     }
@@ -51,12 +54,12 @@ class EditProduct extends Component
             'sku' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'supplier_id' => 'required|exists:suppliers,id',
+            'unit_id' => 'required|exists:units,id',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'cost_price' => 'required|numeric',
             'quantity' => 'required|integer',
             'low_stock_alert' => 'nullable|integer',
-            'unit' => 'nullable|string',
             'uploadedImage' => 'nullable|image|max:2048',
             'barcode' => 'nullable|string',
             'is_active' => 'boolean',
@@ -86,19 +89,35 @@ class EditProduct extends Component
                 'cost_price' => $this->cost_price,
                 'quantity' => $this->quantity,
                 'low_stock_alert' => $this->low_stock_alert,
-                'unit' => $this->unit,
+                'unit_id' => $this->unit_id,
                 'image_path' => $imagePath, // Save the new image path
                 'barcode' => $this->barcode,
                 'is_active' => $this->is_active,
             ]);
 
-            $this->reset(); // Reset the form fields
+            $this->reset([
+                'name',
+                'sku',
+                'category_id',
+                'supplier_id',
+                'description',
+                'price',
+                'cost_price',
+                'quantity',
+                'low_stock_alert',
+                'unit_id',
+                'image_path',
+                'uploadedImage',
+                'barcode',
+                'is_active',
+            ]);
+            
             
             $this->dispatch('flash', type: 'success', message: 'Product updated!');
 
 
             $this->dispatch('redirect', 
-                url : route('products.index', ['product' => $this->product->id])
+                url : route('products.index')
             );
 
         } catch (\Exception $e) {
