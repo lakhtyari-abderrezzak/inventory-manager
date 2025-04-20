@@ -45,5 +45,11 @@ class Customer extends Model
     {
         return $this->hasMany(Order::class);
     }
-    
+    /**
+     * Get the products associated with the customer.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
