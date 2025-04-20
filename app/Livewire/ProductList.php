@@ -28,6 +28,10 @@ class ProductList extends Component
             ->latest()
             ->paginate(15);
 
+        // foreach ($products as $product) {
+        //     dd($product->unit->unit_id); // Debugging line to check the unit relationship
+        // }
+
         return view('livewire.product-list', compact('products'));
     }
 }
