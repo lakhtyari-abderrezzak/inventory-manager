@@ -19,11 +19,11 @@ class OrderController extends Controller
         return view('dashboard.orders.create');
     }
 
-    public function show($id)
+    public function show(Order $order)
     {
-        return view('dashboard.orders.show', compact('id'));
+        return view('dashboard.orders.show', compact('order'));
     }
-    
+
     public function edit($id)
     {
         return view('dashboard.orders.edit', compact('id'));
