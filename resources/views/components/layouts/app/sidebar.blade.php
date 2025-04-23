@@ -45,11 +45,18 @@
                     {{ __('Suppliers') }}
                 </flux:navlist.item>
                 <flux:navlist.item 
-                    icon="truck" 
+                    icon="user-circle" 
                     :href="route('customers.index')" 
                     :current="request()->routeIs('customers.*')" 
                     wire:navigate>
                     {{ __('Customers') }}
+                </flux:navlist.item>
+                <flux:navlist.item 
+                    icon="currency-dollar" 
+                    :href="route('orders.index')" 
+                    :current="request()->routeIs('orders.*')" 
+                    wire:navigate>
+                    {{ __('Orders') }}
                 </flux:navlist.item>
                 
                 </flux:navlist.group>
