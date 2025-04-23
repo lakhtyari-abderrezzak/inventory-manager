@@ -8,7 +8,9 @@ use App\Models\Supplier;
 use App\Models\Product;
 use App\Models\Unit;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Order;
+use App\Models\OrderItems;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +26,8 @@ class DatabaseSeeder extends Seeder
         Customer::factory(5)->create();
         Supplier::factory(5)->create();
         Product::factory(30)->create(); 
+        Order::factory(10)->create();
+        OrderItems::factory(50)->create();
 
         User::factory()->create([
             'name' => 'Test User',
